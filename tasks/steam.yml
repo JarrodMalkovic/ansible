@@ -1,4 +1,0 @@
-- name: Install Steam
-  apt: name=steam
-  tags: 
-    - steam
