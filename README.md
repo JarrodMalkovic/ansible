@@ -47,10 +47,8 @@ This option allows you to run the `install.sh` script directly without cloning t
 1. Open your terminal and run the following command:
 
    ```bash
-   curl -sL https://raw.githubusercontent.com/your-username/your-repo/main/install.sh | bash
+   curl -sL https://raw.githubusercontent.com/JarrodMalkovic/ansible/main/install.sh | bash
    ```
-
-   Make sure to replace `your-username` and `your-repo` with your actual GitHub username and repository name.
 
 2. The `install.sh` script will be downloaded and executed, which will trigger the setup process based on your Ansible tasks.
 
