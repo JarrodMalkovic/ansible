@@ -1,0 +1,4 @@
+- name: Install Terminator
+  apt: name=terminator
+  tags: 
+    - terminator

@@ -1,0 +1,7 @@
+- name: Install VSCode
+  become: true
+  snap:
+    name: code
+    state: present
+  tags:
+    - vscode

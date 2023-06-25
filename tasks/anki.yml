@@ -1,0 +1,46 @@
+- name: Install Anki prerequisites
+  become: true
+  apt:
+    name:
+      - libxcb-xinerama0
+      - libxcb-cursor0
+      - zstd
+    state: present
+  tags:
+    - anki
+
+- name: Download Anki
+  become: true
+  get_url:
+    url: "https://github.com/ankitects/anki/releases/download/2.1.65/anki-2.1.65-linux-qt6.tar.zst"
+    dest: "/tmp/anki.tar.zst"
+  tags:
+    - anki
+
+- name: Create Anki directory
+  become: true
+  file:
+    path: "/opt/anki"
+    state: directory
+    mode: '0755'
+  tags:
+    - anki
+
+- name: Extract Anki
+  become: true
+  unarchive:
+    src: "/tmp/anki.tar.zst"
+    dest: "/opt/anki"
+    remote_src: yes
+    extra_opts: --zstd
+  tags:
+    - anki
+
+- name: Run Anki install script
+  become: true
+  shell: /opt/anki/anki-2.1.65-linux-qt6/install.sh
+  args:
+    chdir: /opt/anki/anki-2.1.65-linux-qt6/
+    warn: false
+  tags:
+    - anki

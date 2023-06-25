@@ -1,0 +1,7 @@
+- name: Install Discord
+  become: true
+  snap:
+    name: discord
+    state: present
+  tags:
+    - discord

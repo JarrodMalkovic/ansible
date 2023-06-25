@@ -1,0 +1,8 @@
+- name: Install Obsidian
+  become: true
+  snap:
+    name: obsidian
+    state: present
+    classic: true
+  tags:
+    - obsidian

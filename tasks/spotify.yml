@@ -1,0 +1,7 @@
+- name: Install Spotify
+  become: true
+  snap:
+    name: spotify
+    state: present
+  tags:
+    - spotify
