@@ -1,8 +1,6 @@
-Certainly! Here's an updated version of the README with a section on testing using the `test.sh` script:
-
 # Ansible
 
-This project aims to streamline the installation and configuration of software, making it easier to recreate a consistent and personalized environment.
+This repo uses ansible to streamline the installation and configuration of software my favourite software, making it easier to consistently recreate my personal environment.
 
 ## Table of Contents
 
