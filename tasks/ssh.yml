@@ -1,11 +1,13 @@
 - name: Ensure .ssh directory exists.
-  become_user: "jarrod"
+  become_user: jarrod
   file:
     dest: "{{ dest_key | dirname }}"
     mode: 0700
     state: directory
   tags:
     - ssh
+  when:
+    use_vault|default(false)|bool
 
 - name: Copy ssh key
   copy:
@@ -15,6 +17,8 @@
     mode: 0555
   tags:
     - ssh
+  when:
+    use_vault|default(false)|bool
 
 - name: Copy ssh key public
   copy:
@@ -23,6 +27,8 @@
     mode: 0644
   tags:
     - ssh
+  when:
+    use_vault|default(false)|bool
 
 - name: Set authorized key took from file
   authorized_key:
@@ -31,3 +37,5 @@
     key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
   with_fileglob:
   - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+  when:
+    use_vault|default(false)|bool

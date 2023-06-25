@@ -1,3 +1,12 @@
+- name: Install Node prerequisites
+  become: true
+  apt:
+    name:
+      - curl
+    state: present
+  tags:
+    - node
+
 - name: Install Node
   become: true
   apt:

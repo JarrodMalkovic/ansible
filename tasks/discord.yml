@@ -3,5 +3,6 @@
   snap:
     name: discord
     state: present
+  when: not is_docker_container
   tags:
-    - discord
+  - discord

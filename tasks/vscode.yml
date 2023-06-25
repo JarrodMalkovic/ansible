@@ -3,5 +3,7 @@
   snap:
     name: code
     state: present
+  when: not is_docker_container
   tags:
     - vscode
+    - snap

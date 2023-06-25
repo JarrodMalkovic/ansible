@@ -3,5 +3,7 @@
   snap:
     name: spotify
     state: present
+  when: not is_docker_container
   tags:
     - spotify
+    - snap

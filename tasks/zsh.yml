@@ -1,14 +1,24 @@
+- name: Install zsh prerequisites
+  become: true
+  apt:
+    name:
+      - curl
+      - git
+    state: present
+  tags:
+    - zsh
+
 - name: Install ZSH
   apt: name=zsh
   tags: 
     - zsh
     
-- name: Change shell to ZSH
+- name: Change shell to zsh
   shell: chsh -s $(which zsh)
   tags: 
     - zsh
 
-- name: Oh-My-Zsh
+- name: Install oh-my-zsh
   shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh > ~/.oh-my-installer && chmod +x ~/.oh-my-installer && ~/.oh-my-installer
   tags: 
     - zsh

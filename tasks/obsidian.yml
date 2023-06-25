@@ -4,5 +4,7 @@
     name: obsidian
     state: present
     classic: true
+  when: not is_docker_container
   tags:
     - obsidian
+    - snap
