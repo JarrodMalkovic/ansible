@@ -61,15 +61,13 @@ This option allows you to clone the repository and then run the `install.sh` scr
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/JarrodMalkovic/ansible.git
    ```
-
-   Make sure to replace `your-username` and `your-repo` with your actual GitHub username and repository name.
 
 2. Change to the cloned repository directory:
 
    ```bash
-   cd your-repo
+   cd ansible
    ```
 
 3. Run the `install.sh` script:
@@ -86,9 +84,7 @@ To test the Ansible setup using Docker, you can utilize the provided `test.sh` s
 
 1. Make sure Docker is installed on your system.
 
-2. Open your terminal and navigate to
-
- the project directory.
+2. Open your terminal and navigate to the project directory.
 
 3. Run the `test.sh` script:
 
