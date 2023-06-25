@@ -12,13 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
         with:
-          python-version: 3.x
+          version: "20.10.0" 
 
-      - name: Install Ansible
-        run: pip install ansible
+      - name: Build Docker image
+        run: docker build -t ansible-playbook-runner .
 
-      - name: Run Ansible playbook
-        run: ansible-playbook playbook.yml
+      - name: Run Ansible playbook in Docker container
+        run: docker run --rm ansible-playbook-runner
