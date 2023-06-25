@@ -1,0 +1,14 @@
+- name: Install git
+  apt: name=git
+  tags:
+    - git
+
+- name: Set git email
+  shell: git config --global user.email "jarrodmalkovic@outlook.com"
+  tags:
+    - git
+
+- name: Set git username
+  shell: git config --global user.name "JarrodMalkovic"
+  tags:
+    - git
