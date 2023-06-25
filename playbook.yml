@@ -7,16 +7,32 @@
       apt:
         update_cache: true
       tags:
-      - node
-      - zsh
+      - pre
+
+    - name: Check if running inside Docker container
+      set_fact:
+        is_docker_container: "{{ ansible_facts.virtualization_type == 'docker' }}"
+      changed_when: false
+
+    # Embrace the snap side
+    - name: Install snap
+      apt:
+        name: snapd
+        state: present
+      become: yes
+      when: not is_docker_container
+      tags:
+        - snap
+
   tasks: 
     - include: ./tasks/anki.yml
     - include: ./tasks/discord.yml
+    - include: ./tasks/docker.yml
+    - include: ./tasks/git.yml
     - include: ./tasks/node.yml
     - include: ./tasks/obsidian.yml
     - include: ./tasks/spotify.yml
     - include: ./tasks/ssh.yml
-    - include: ./tasks/steam.yml
     - include: ./tasks/terminator.yml
     - include: ./tasks/vscode.yml
     - include: ./tasks/zsh.yml
