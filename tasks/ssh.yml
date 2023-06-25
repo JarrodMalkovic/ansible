@@ -6,19 +6,15 @@
     state: directory
   tags:
     - ssh
-  when:
-    use_vault|default(false)|bool
 
 - name: Copy ssh key
   copy:
     src: "{{ source_key }}"
     dest: "{{ dest_key }}"
     force: false
-    mode: 0555
+    mode: 0400
   tags:
     - ssh
-  when:
-    use_vault|default(false)|bool
 
 - name: Copy ssh key public
   copy:
@@ -27,8 +23,6 @@
     mode: 0644
   tags:
     - ssh
-  when:
-    use_vault|default(false)|bool
 
 - name: Set authorized key took from file
   authorized_key:
@@ -36,6 +30,4 @@
     state: present
     key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
   with_fileglob:
-  - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
-  when:
-    use_vault|default(false)|bool
+    - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
