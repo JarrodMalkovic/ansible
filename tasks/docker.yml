@@ -1,0 +1,65 @@
+- name: Install docker prerequisites
+  become: true
+  apt:
+    pkg:
+      - python3-pip
+      - virtualenv
+      - python3-setuptools
+  tags:
+    - docker
+
+- name: Add Docker GPG apt Key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  tags:
+    - docker
+
+- name: Add Docker Repository
+  become: true
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu focal stable
+    state: present
+  tags:
+    - docker
+
+- name: Update apt and install docker-ce
+  become: true
+  apt:
+    name: docker-ce
+    state: latest
+    update_cache: true
+  tags:
+    - docker
+
+- name: Install Docker Module for Python
+  become: true
+  pip:
+    name: docker
+  tags:
+    - docker
+
+- name: Check if docker group exists
+  become: true
+  command: getent group docker
+  register: docker_group_check
+  changed_when: false
+  tags:
+    - docker
+
+- name: Create docker group if it doesn't exist
+  become: true
+  command: groupadd docker
+  when: docker_group_check.rc != 0
+  tags:
+    - docker
+
+- name: Add user to docker group
+  become: true
+  user:
+    name: jarrod
+    groups: docker
+    append: yes
+  tags:
+    - docker
