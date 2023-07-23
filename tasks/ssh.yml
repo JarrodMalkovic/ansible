@@ -4,6 +4,7 @@
     dest: "{{ dest_key | dirname }}"
     mode: 0700
     state: directory
+  when: not is_docker_container
   tags:
     - ssh
 
@@ -13,6 +14,7 @@
     dest: "{{ dest_key }}"
     force: false
     mode: 0400
+  when: not is_docker_container
   tags:
     - ssh
 
@@ -21,6 +23,7 @@
     src: "{{ source_key }}.pub"
     dest: "{{ dest_key }}.pub"
     mode: 0644
+  when: not is_docker_container
   tags:
     - ssh
 
@@ -31,3 +34,4 @@
     key: "{{ lookup('env', 'HOME') }}/.ssh/id_rsa.pub"
   with_fileglob:
     - "{{ lookup('env', 'HOME') }}/.ssh/*.pub"
+  when: not is_docker_container
